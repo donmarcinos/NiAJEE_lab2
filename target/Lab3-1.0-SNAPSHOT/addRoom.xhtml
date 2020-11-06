@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:h="http://java.sun.com/jsf/html">
+<head>
+	<meta charset="UTF-8"/>
+	<title>Insert title here</title>
+	<link rel="stylesheet" href="styles.css"/>
+	<f:metadata>
+        <f:viewParam name="title" value="#{movieView.id}" required="true"/>
+        <f:viewAction action="#{movieView.init()}"/>
+    </f:metadata>
+</head>
+<body>
+<div class="topnav">
+  <a href="index.xhtml">Home</a>
+  <a href="movies.xhtml">Filmy</a>
+  <a href="#contact">Contact</a>
+  <a href="#about">About</a>
+</div>
+<div class="header">
+	<div class="image">
+		<img src="images/theater_seats.jpg"/>			
+	</div>
+</div>
+<div class="body">
+	<div class="page-content">
+		<h2>DODAJ SALE DLA FILMU #{roomView.movieTitle}</h2>
+		<div >
+			<h:form class="myForm">
+				<p>Wpisz numer sali:</p>
+				<h:inputText class="selectMenu" value="#{roomManager.number}"></h:inputText>
+				<p>Wybierz typ sali:</p>
+				<h:selectOneMenu class="selectMenu" value="#{roomManager.type}">
+				    <f:selectItem class="selectMenu" itemValue="IMAX" itemLabel="IMAX" />
+				    <f:selectItem class="selectMenu" itemValue="REGULAR" itemLabel="REGULAR" />
+				</h:selectOneMenu>
+				<p>Wprowadz opis:</p>
+				<h:inputTextarea value="#{roomManager.description}" class="selectMenu" row = "10" col = "10" maxlength="255"/>
+				<br/><h:commandButton class="buttons" value="submit" action="#{roomManager.addRoom(roomView.movieTitle)}" />
+			</h:form>
+		</div>
+	</div>
+</div>
+<footer>
+  <p>copyright 2020 - Marcin Adamski</p>
+  <a href="#" class="support">Kontakt</a>
+</footer>
+
+</body>
+</html>

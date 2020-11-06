@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:h="http://java.sun.com/jsf/html">
+<head>
+	<meta charset="UTF-8"/>
+	<title>Insert title here</title>
+	<link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+<div class="topnav">
+  <a href="index.xhtml">Home</a>
+  <a href="movies.xhtml">Filmy</a>
+  <a href="#contact">Contact</a>
+  <a href="#about">About</a>
+</div>
+<div class="header">
+	<div class="image">
+		<img src="images/theater_seats.jpg"/>			
+	</div>
+</div>
+<div class="body">
+	<div class="page-content">
+		<h2>FILMY</h2>
+		<div class="dataTable">
+			<h:dataTable value="#{movieManager.allMovies}" var="obj">
+				<h:column>
+					<f:facet name="header">Title</f:facet>
+					<h:outputText value="#{obj.title}"></h:outputText>
+				</h:column>
+				<h:column>
+					<f:facet name="header">ID</f:facet>
+					<h:outputText value="#{obj.movieID}"></h:outputText>
+				</h:column>
+				<h:column>
+					<h:form>
+						<h:commandButton class="buttons" action="#{movieView.execute(obj.movieID)}" value="Get info"/>
+                    </h:form>
+				</h:column>
+				<h:column>
+					<h:form>
+						<h:commandButton class="buttons" action="#{movieManager.deleteMovie(obj.movieID)}" value="DELETE MOVIE"/>
+                    </h:form>
+				</h:column>
+			</h:dataTable>
+		</div>
+	</div>
+</div>
+<footer>
+  <p>copyright 2020 - Marcin Adamski</p>
+  <a href="#" class="support">Kontakt</a>
+</footer>
+
+</body>
+</html>
