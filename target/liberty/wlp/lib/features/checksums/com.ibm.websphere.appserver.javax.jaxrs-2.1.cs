@@ -1,4 +1,4 @@
-#Thu Nov 05 22:16:42 CET 2020
+#Tue Nov 10 20:31:01 CET 2020
 lib/features/com.ibm.websphere.appserver.javax.jaxrs-2.1.mf=5d1ad848f710ad20fdc8145ef43820db
 dev/api/spec/com.ibm.websphere.javaee.activation.1.1_1.0.46.jar=4e89fd7ffebd99e6da56966e93274baa
 dev/api/spec/com.ibm.websphere.javaee.jaxrs.2.1_1.0.46.jar=717533d66a6980f935ff05aa9c512a4f

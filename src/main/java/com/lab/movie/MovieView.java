@@ -37,17 +37,14 @@ public class MovieView implements Serializable {
 		this.movieService = movieService;
 	}
     
-	public String execute(Long id) throws IOException {
-        Optional<Movie> movie = movieService.getMovie(id);
+	public void init() throws IOException {
+        Optional<Movie> movie = movieService.getMovie(this.id);
         if (movie.isPresent()) {
             this.movie = movie.get();
-            FacesContext.getCurrentInstance().getExternalContext().getFlash().put("mv", movie.get());
-            return "/singleMovie.xhtml?faces-redirect=true";
         } else {
             FacesContext.getCurrentInstance().getExternalContext()
                     .responseSendError(HttpServletResponse.SC_NOT_FOUND, "Movie not found");
         }
-        return "";
     }
 
 }

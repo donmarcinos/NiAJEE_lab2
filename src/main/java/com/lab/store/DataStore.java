@@ -7,6 +7,7 @@ import com.lab.screeningroom.RoomType;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -85,10 +86,11 @@ public class DataStore {
                             String.format("The screening room number \"%d\" is not unique", screeningRoom.getNumber()));
                 },
                 () -> screeningRooms.add(screeningRoom));
+		screeningRooms.sort(Comparator.comparing(ScreeningRoom::getNumber));
 	}
 	
 	public synchronized void updateScreeningRoom(ScreeningRoom screeningRoom) throws IllegalArgumentException {
-        findMovie(screeningRoom.getNumber()).ifPresentOrElse(
+		findScreeningRoom(screeningRoom.getNumber()).ifPresentOrElse(
                 original -> {
                     screeningRooms.remove(original);
                     screeningRooms.add(screeningRoom);
@@ -97,6 +99,7 @@ public class DataStore {
                     throw new IllegalArgumentException(
                             String.format("The screening room with number \"%d\" does not exist", screeningRoom.getNumber()));
                 });
+		screeningRooms.sort(Comparator.comparing(ScreeningRoom::getNumber));
     }
 	
 	public synchronized void deleteScreeningRoom(int number) throws IllegalArgumentException {

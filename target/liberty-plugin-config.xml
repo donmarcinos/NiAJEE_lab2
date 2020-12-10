@@ -14,7 +14,7 @@
     <looseApplication>true</looseApplication>
     <stripVersion>false</stripVersion>
     <installAppPackages>project</installAppPackages>
-    <applicationFilename>Lab3-1.0-SNAPSHOT.war.xml</applicationFilename>
+    <applicationFilename>Lab2-1.0-SNAPSHOT.war.xml</applicationFilename>
     <assemblyArtifact>
         <groupId>io.openliberty</groupId>
         <artifactId>openliberty-kernel</artifactId>

@@ -56,25 +56,19 @@ public class ScreeningRoomService {
 		return roomRepository.find(number);
 	}
 	
-	public void deleteRoom(int roomNumber) {
-		roomRepository.delete(roomRepository.find(roomNumber).orElseThrow());
+	public void deleteRoom(ScreeningRoom entity) {
+		roomRepository.delete(entity);
 	}
 	
-	public void updateRoom(int roomNumber) {
-		roomRepository.update(roomRepository.find(roomNumber).orElseThrow());
+	public void updateRoom(ScreeningRoom entity) {
+		roomRepository.update(entity);
 	}
 	
-	public void addRoom(Long movieID) throws IOException {
+	public void addRoom(ScreeningRoom entity) throws IOException {
 		
-		ScreeningRoom entity = new ScreeningRoom();
-		Optional<Movie> movie = movieRepository.find(movieID);
+		Optional<Movie> movie = movieRepository.find(entity.getMovieID());
 		
-		if (movie.isPresent()) {
-			entity.setNumber(this.number);
-			entity.setDescription(this.description);
-			entity.setType(this.type);
-			entity.setMovieID(movieID);
-			
+		if (movie.isPresent()) {			
 			roomRepository.create(entity);
 		} else {
             FacesContext.getCurrentInstance().getExternalContext()

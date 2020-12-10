@@ -37,15 +37,15 @@ public class ScreeningRoomView implements Serializable {
 	
 	@Getter
 	@Setter
-	private int number;
+	private int id;
 	
 	@Inject
 	public ScreeningRoomView(ScreeningRoomService roomService) {
 		this.roomService = roomService;
 	}
 	
-	public void init(int number) throws IOException {
-        Optional<ScreeningRoom> room = roomService.getRoom(number);
+	public void init() throws IOException {
+        Optional<ScreeningRoom> room = roomService.getRoom(this.id);
         if (room.isPresent()) {
             this.room = room.get();
         } else {
@@ -53,34 +53,5 @@ public class ScreeningRoomView implements Serializable {
                     .responseSendError(HttpServletResponse.SC_NOT_FOUND, "Room not found");
         }
     }
-    
-	public String execute(int id) throws IOException {
-        Optional<ScreeningRoom> room = roomService.getRoom(id);
-        if (room.isPresent()) {
-            this.room = room.get();
-            return "/singleRoom.xhtml?faces-redirect=true";
-        } else {
-            FacesContext.getCurrentInstance().getExternalContext()
-                    .responseSendError(HttpServletResponse.SC_NOT_FOUND, "Room not found");
-        }
-        return "";
-    }
-	
-	public String goToUpdate(int number) throws IOException {
-		Optional<ScreeningRoom> room = roomService.getRoom(number);
-        if (room.isPresent()) {
-            this.room = room.get();
-            return "/updateRoom.xhtml?faces-redirect=true";
-        } else {
-            FacesContext.getCurrentInstance().getExternalContext()
-                    .responseSendError(HttpServletResponse.SC_NOT_FOUND, "Room not found");
-        }
-        return "";
-	}
-	
-	public String goToAdd(String title) throws IOException {
-        this.movieTitle = title;
-        return "/addRoom.xhtml?faces-redirect=true";
-	}
 
 }
